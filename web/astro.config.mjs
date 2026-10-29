@@ -27,7 +27,7 @@ export default defineConfig({
       social: [
         {
           icon: "github",
-          label: "Neon documentation on GitHub",
+          label: "San Andreas Online documentation on GitHub",
           href: "https://github.com/Dryxio/wiki.mtasa-neon.com",
         },
       ],
@@ -42,14 +42,14 @@ export default defineConfig({
       disable404Route: true,
       sidebar: [
         {
-          label: "MTA:SA Neon · Start here",
+          label: "SA:O · Start here",
           items: [
             { label: "Overview", link: "/neon" },
             { label: "Download & install", link: "/neon/download" },
             { label: "What's different", link: "/neon/features" },
             { label: "Synchronized NPCs & traffic", link: "/neon/synchronized-ai" },
-            { label: "Neon Lua API", link: "/neon/functions" },
-            { label: "Neon CLI for AI agents", link: "/neon/cli" },
+            { label: "SA:O Lua API", link: "/neon/functions" },
+            { label: "SA:O CLI for AI agents", link: "/neon/cli" },
             { label: "Compatibility", link: "/neon/compatibility" },
           ],
         },
@@ -63,10 +63,10 @@ export default defineConfig({
         {
           label: "Player & server systems",
           items: [
-            { label: "Neon client", link: "/neon/client-experience" },
+            { label: "SA:O client", link: "/neon/client-experience" },
             { label: "SkyGFX & radar", link: "/neon/skygfx" },
             { label: "Native GTA radio", link: "/neon/native-radio" },
-            { label: "Neon Identity", link: "/neon/identity" },
+            { label: "SA:O accounts", link: "/neon/identity" },
             { label: "Custom vehicle audio", link: "/neon/vehicle-audio" },
           ],
         },

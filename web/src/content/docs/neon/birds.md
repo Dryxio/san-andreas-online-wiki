@@ -7,7 +7,7 @@ sidebar:
 
 San Andreas has ambient birds, but they are decoration: GTA owns six slots, picks the models, and nothing in MTA could touch them.
 
-Neon adds a **`bird` element** with its own renderer and flight control. A resource creates as many as it wants, steers them, restyles them, and can make them shootable.
+San Andreas Online adds a **`bird` element** with its own renderer and flight control. A resource creates as many as it wants, steers them, restyles them, and can make them shootable.
 
 <video controls muted loop playsinline preload="metadata"
        poster="/neon-media/bird-poster.jpg"

@@ -5,15 +5,15 @@ sidebar:
   order: 4
 ---
 
-Give a server a custom static-world pack and Neon loads its models, textures, collision, and object placements through **GTA's own world loader and streaming system**. The map becomes a native part of the world: GTA loads the nearby area as the player moves instead of a Lua resource creating the whole map as thousands of scripted objects.
+Give a server a custom static-world pack and San Andreas Online loads its models, textures, collision, and object placements through **GTA's own world loader and streaming system**. The map becomes a native part of the world: GTA loads the nearby area as the player moves instead of a Lua resource creating the whole map as thousands of scripted objects.
 
 Bullworth, Vice City, Liberty City, and Carcer City are the reviewed proof packs, not a hardcoded list of allowed cities. A server can publish its own map after converting it to the supported format and passing the same strict file, model, collision, placement, and size checks.
 
-One server may select up to eight compatible packs. Neon keeps only the imported city around the player's current position active, automatically unloads the previous one, and streams the next one through GTA. San Andreas remains available between those regions.
+One server may select up to eight compatible packs. San Andreas Online keeps only the imported city around the player's current position active, automatically unloads the previous one, and streams the next one through GTA. San Andreas remains available between those regions.
 
-For format-3 sets, the first connection can download, audit, and load the map in the **same GTA process**. The player does not have to restart once just to enter the first custom world. Later, the player can also leave one Native World server and join another with a different map set without restarting GTA. Neon unloads the old native content, returns the game to a clean state, and loads the new server's audited set. If either admission or cleanup cannot be proved safe, Neon falls back to a verified restart instead of risking a mixed or corrupted world.
+For format-3 sets, the first connection can download, audit, and load the map in the **same GTA process**. The player does not have to restart once just to enter the first custom world. Later, the player can also leave one Native World server and join another with a different map set without restarting GTA. San Andreas Online unloads the old native content, returns the game to a clean state, and loads the new server's audited set. If either admission or cleanup cannot be proved safe, San Andreas Online falls back to a verified restart instead of risking a mixed or corrupted world.
 
-<!-- MEDIA PLACEHOLDER: Native-world residency. Suggested file: /neon-media/native-world-city-switch.webp or a video showing travel between two reviewed city regions. State which generated test packs are shown and avoid implying that their assets ship with Neon. -->
+<!-- MEDIA PLACEHOLDER: Native-world residency. Suggested file: /neon-media/native-world-city-switch.webp or a video showing travel between two reviewed city regions. State which generated test packs are shown and avoid implying that their assets ship with San Andreas Online. -->
 
 ## What a player or server operator should expect
 
@@ -24,7 +24,7 @@ For format-3 sets, the first connection can download, audit, and load the map in
 - One imported city is spatially resident at a time. Travel can switch cities inside the selected set without restarting MTA.
 - After that setup, the client can unload one committed format-3 set and admit a different server or set in the same GTA process.
 - If runtime cleanup is not safe, the client automatically uses a verified restart fallback.
-- Current Neon client and server builds must match the native-world protocol. There is no silent downgrade to an ordinary resource download.
+- Current San Andreas Online client and server builds must match the native-world protocol. There is no silent downgrade to an ordinary resource download.
 - Radar, paths, population, zones, audio, interiors, and environment data are separate work.
 
 ## Format 3: selected static-world sets
@@ -64,11 +64,11 @@ bank A   20000 .. 24095
 bank B   24096 .. 28191
 ```
 
-Each child may define at most 4,096 models. The selected set may describe at most 12,000 models across its non-overlapping logical ranges. When travel crosses reviewed city bounds, Neon prepares the target scene, retires the old generation, and reuses the other physical bank.
+Each child may define at most 4,096 models. The selected set may describe at most 12,000 models across its non-overlapping logical ranges. When travel crosses reviewed city bounds, San Andreas Online prepares the target scene, retires the old generation, and reuses the other physical bank.
 
 The generation fence removes cover data, IPL and LOD anchors, archive channels, collision, models, and stale bindings before a bank is reused. This switching is automatic engine behavior; there is no public Lua function that selects a city.
 
-Commit [`ac3a54f57`](https://github.com/Dryxio/mtasa-neon/commit/ac3a54f57) also moved resource-managed server model IDs to 42,341–65,534, above Neon's complete native FileID layout. Those server IDs are separate from the two physical residency banks.
+Commit [`ac3a54f57`](https://github.com/Dryxio/mtasa-neon/commit/ac3a54f57) also moved resource-managed server model IDs to 42,341–65,534, above San Andreas Online's complete native FileID layout. Those server IDs are separate from the two physical residency banks.
 
 ## Download, audit, and cache
 
@@ -85,7 +85,7 @@ A content hash proves that bytes are identical. It does not identify who sent th
 
 An accepted format-3 cache object is fully hashed and inspected once, then kept as a verified read-only object. Reusing that exact object in the same GTA process avoids hashing the full map payload again. In the recorded checkpoint, a cached set reached the active state in 9 seconds from a fresh process; later admissions in the same process usually took 1–4 seconds with zero payload rehashes. These are measurements from the reviewed set and machine, not guaranteed loading times for every map or disk.
 
-The cache remains fail-closed. In the recovery test, Neon rejected a deliberately corrupted Bullworth IDE and rebuilt it byte-for-byte to its original SHA-256 before the world was admitted.
+The cache remains fail-closed. In the recovery test, San Andreas Online rejected a deliberately corrupted Bullworth IDE and rebuilt it byte-for-byte to its original SHA-256 before the world was admitted.
 
 <span id="the-two-launch-activation"></span>
 
@@ -96,9 +96,9 @@ same GTA process: download -> audit -> immutable cache -> exact set recheck
                   -> one-shot admission -> registrar generation 1
 ```
 
-Neon installs only the empty Native World foundation at game startup. When the server publishes a format-3 set, the client audits the downloaded children, checks that the current GTA process is still clean, grows the streaming buffer if needed, revalidates the session and cache objects, and only then loads generation 1.
+San Andreas Online installs only the empty Native World foundation at game startup. When the server publishes a format-3 set, the client audits the downloaded children, checks that the current GTA process is still clean, grows the streaming buffer if needed, revalidates the session and cache objects, and only then loads generation 1.
 
-If that same-process admission cannot cross every safety gate, Neon records the exact pending transaction and uses the verified restart fallback. The player can inspect or control that fallback from F8:
+If that same-process admission cannot cross every safety gate, San Andreas Online records the exact pending transaction and uses the verified restart fallback. The player can inspect or control that fallback from F8:
 
 ```text
 nativeworldauth status
@@ -108,11 +108,11 @@ nativeworldauth clear
 
 The fallback record expires after 15 minutes. It is bound to the exact ordered content set, opaque server identity, numeric IPv4 endpoint, resource generation, and negotiated protocol version. It contains no password, raw server key, hostname, payload path, or server-selected executable path.
 
-After the fallback restart, Neon opens the exact cache objects named by the record, fully re-audits them, validates the supported GTA executable and patch sites, then spends the one-shot ticket before native mutation. The new connection must reproduce the endpoint, server identity, and protocol version.
+After the fallback restart, San Andreas Online opens the exact cache objects named by the record, fully re-audits them, validates the supported GTA executable and patch sites, then spends the one-shot ticket before native mutation. The new connection must reproduce the endpoint, server identity, and protocol version.
 
 ## Session teardown and server isolation
 
-While a selected set is active, Neon pins connection routes to the owner endpoint before network reset, reconnect, mod unload, or credential lookup.
+While a selected set is active, San Andreas Online pins connection routes to the owner endpoint before network reset, reconnect, mod unload, or credential lookup.
 
 - An active-session mismatch is blocked without destroying the valid owner session.
 - Saved and supplied credentials remain suppressed while native-world startup or residency is active.
@@ -120,9 +120,9 @@ While a selected set is active, Neon pins connection routes to the owner endpoin
 
 Format-3 teardown now has explicit `Active → Draining → Detached → Neutral` fences. It stops new city work, flushes outstanding streaming I/O, removes generation-owned entities, IPL and LOD anchors, collisions, model bindings and archive channels, releases immutable-cache handles, restores the native stores and pools, and then releases the endpoint-owned session. The recorded live gate reached content-neutral, session-neutral, admission-baseline-matching, I/O-quiescent state with zero cache handles.
 
-Once that clean boundary is reached, Neon can queue a new connection and admit a different server or ordered map set without restarting GTA. This is the supported runtime hot-switch path, not merely a teardown test.
+Once that clean boundary is reached, San Andreas Online can queue a new connection and admit a different server or ordered map set without restarting GTA. This is the supported runtime hot-switch path, not merely a teardown test.
 
-If the live process cannot reach the required clean state, Neon publishes `restart-required=yes` and uses the exact-readback restart path. The fallback deliberately replaces the GTA process rather than loading new native content on top of uncertain state.
+If the live process cannot reach the required clean state, San Andreas Online publishes `restart-required=yes` and uses the exact-readback restart path. The fallback deliberately replaces the GTA process rather than loading new native content on top of uncertain state.
 
 The endpoint is only a locator. The opaque network identity provides continuity inside this workflow; it is not PKI or proof of the operator's legal identity.
 

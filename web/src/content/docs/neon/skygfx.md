@@ -1,17 +1,17 @@
 ---
 title: SkyGFX, radar, and client visuals
-description: Neon's integrated PS2-style effects, Definitive Edition radar profile, and resource-owned visual overrides.
+description: San Andreas Online's integrated PS2-style effects, Definitive Edition radar profile, and resource-owned visual overrides.
 ---
 
-Neon packages a controlled SkyGFX bridge and a configurable radar renderer directly in the Windows client. Players do not need a separate ASI install, and servers can request temporary visual profiles without overwriting the player's saved settings.
+San Andreas Online packages a controlled SkyGFX bridge and a configurable radar renderer directly in the Windows client. Players do not need a separate ASI install, and servers can request temporary visual profiles without overwriting the player's saved settings.
 
-![Street-level view in Ganton: neutral colors in MTA:SA, warmer and more saturated PS2-style grading in Neon](/neon-media/compare-skygfx.jpg)
+![Street-level view in Ganton: neutral colors in MTA:SA, warmer and more saturated PS2-style grading in San Andreas Online](/neon-media/compare-skygfx.jpg)
 
 The two captures differ slightly in time of day, so part of the warmth comes from GTA's own timecycle rather than from the color path alone.
 
 ## First-run visual profile
 
-New Neon installs use a lightweight PS2-style profile by default:
+New San Andreas Online installs use a lightweight PS2-style profile by default:
 
 - SkyGFX integration: **enabled**;
 - PS2 color filter: **enabled**;
@@ -39,18 +39,18 @@ Radiosity intensity accepts 1â€“255 and its filter/render pass counts accept 1â€
 
 ## Fullscreen device resets
 
-The current release bridge uses **API v5**. Neon releases SkyGFX-owned Direct3D default-pool resources before a D3D9 reset and recreates them afterward, fixing the exclusive-fullscreen Alt-Tab reset failure that could previously leave GTA unresponsive when radiosity was active.
+The current release bridge uses **API v5**. San Andreas Online releases SkyGFX-owned Direct3D default-pool resources before a D3D9 reset and recreates them afterward, fixing the exclusive-fullscreen Alt-Tab reset failure that could previously leave GTA unresponsive when radiosity was active.
 
-API v4 remains accepted for compatible legacy color processing, but published Neon builds pin the tested v5 bridge with the device lifecycle callbacks.
+API v4 remains accepted for compatible legacy color processing, but published San Andreas Online builds pin the tested v5 bridge with the device lifecycle callbacks.
 
 ## Vanilla or Definitive Edition radar
 
-The Neon radar settings offer two renderers:
+The San Andreas Online radar settings offer two renderers:
 
-- **Vanilla**: the normal GTA radar presentation with Neon's configurable layout;
+- **Vanilla**: the normal GTA radar presentation with San Andreas Online's configurable layout;
 - **Definitive Edition**: a widescreen-safe renderer backed by the bundled 144-tile texture archive.
 
-Players can change radar position, width, height, and widescreen-safe behavior from the Neon settings. The client reports the effective HUD geometry instead of assuming the stock 4:3 layout.
+Players can change radar position, width, height, and widescreen-safe behavior from the San Andreas Online settings. The client reports the effective HUD geometry instead of assuming the stock 4:3 layout.
 
 ## Resource-owned visual overrides
 
@@ -71,7 +71,7 @@ Overrides are session-scoped and owned by the calling resource. They stack in ap
 
 ## Evidence and limits
 
-Commit [`7322b1d71`](https://github.com/Dryxio/mtasa-neon/commit/7322b1d71) added the first-run profile, resource-scoped SkyGFX overrides, and API v5 device-reset lifecycle. Commit [`fb8ee02c4`](https://github.com/Dryxio/mtasa-neon/commit/fb8ee02c4) added the Definitive Edition radar, layout controls, and the general Neon visual-setting bridge.
+Commit [`7322b1d71`](https://github.com/Dryxio/mtasa-neon/commit/7322b1d71) added the first-run profile, resource-scoped SkyGFX overrides, and API v5 device-reset lifecycle. Commit [`fb8ee02c4`](https://github.com/Dryxio/mtasa-neon/commit/fb8ee02c4) added the Definitive Edition radar, layout controls, and the general San Andreas Online visual-setting bridge.
 
 The integrated effects and radar renderer were built and checked in game. The documented scope does not imply complete SkyGFX parity across every weather, resolution, graphics mod, or hardware configuration.
 

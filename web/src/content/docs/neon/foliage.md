@@ -7,7 +7,7 @@ sidebar:
 
 San Andreas grows grass and small vegetation from its native plant manager, which reads triangles out of the map and consults `plants.dat` to decide what grows on each surface. Resources could never touch it, so vegetation was whatever the shipped map happened to have.
 
-Neon exposes it as a **`foliage`** element. A resource hands GTA a triangle, a surface type and a density, and GTA grows its own plants inside that triangle using its normal rendering, wind animation and fade behavior.
+San Andreas Online exposes it as a **`foliage`** element. A resource hands GTA a triangle, a surface type and a density, and GTA grows its own plants inside that triangle using its normal rendering, wind animation and fade behavior.
 
 <video controls muted loop playsinline preload="metadata"
        poster="/neon-media/foliage-poster.jpg"
@@ -43,7 +43,7 @@ patch.surface = 11
 
 **The triangle** is three world-space vertices. It must be finite and non-degenerate, so three collinear points or a zero-area triangle are rejected rather than silently accepted.
 
-**The surface** is a GTA surface ID from `0` to `255`. It is not a free-form style parameter: Neon asks GTA whether that surface has plant properties defined, and a surface with no entry grows nothing and is rejected. Which surfaces are useful therefore depends on the loaded `plants.dat` rather than on Neon. The reference resources probe surfaces at runtime instead of hardcoding one, and the draw demo cycles through `3`, `9`, `10` and `11`.
+**The surface** is a GTA surface ID from `0` to `255`. It is not a free-form style parameter: San Andreas Online asks GTA whether that surface has plant properties defined, and a surface with no entry grows nothing and is rejected. Which surfaces are useful therefore depends on the loaded `plants.dat` rather than on San Andreas Online. The reference resources probe surfaces at runtime instead of hardcoding one, and the draw demo cycles through `3`, `9`, `10` and `11`.
 
 **The density** is a multiplier from `0.0` to `10.0`. `1.0` is the native density for that surface, `0.0` produces an empty patch that still exists as an element, and values above `1.0` thicken it. Anything negative, above `10.0`, or non-finite is rejected.
 
@@ -73,9 +73,9 @@ Patches respect element dimensions, so a patch in another dimension is not rende
 
 ## Limits
 
-- **64 custom foliage elements** at a time. That budget is Neon's own; GTA's shared plant pool is separate, so a creation can still fail earlier if the map's own vegetation already has the native pool under pressure.
+- **64 custom foliage elements** at a time. That budget is San Andreas Online's own; GTA's shared plant pool is separate, so a creation can still fail earlier if the map's own vegetation already has the native pool under pressure.
 - **Client-side only.** There is no server element and no synchronization. Each client builds its own patches, so shared vegetation has to be driven by a resource on both sides.
-- A surface only works if the loaded `plants.dat` defines plant properties for it. Neon does not add plant types; it places triangles for the ones GTA already knows.
+- A surface only works if the loaded `plants.dat` defines plant properties for it. San Andreas Online does not add plant types; it places triangles for the ones GTA already knows.
 - Rendered plant counts are owned by GTA. Lua can read back the element's vertices, surface and density, but not how many plants ended up drawn.
 
 ## Verification

@@ -21,7 +21,7 @@ The setting is synchronized, follows model changes and native recreation, and re
 
 ## Synchronized ambient population
 
-Neon keeps GTA's unmanaged local population loops disabled. Instead, the [client-side population primitives](/neon/functions#population) ask GTA for pedestrian families, models, path placements, road vehicles, lanes, driving parameters, and suitable occupants without creating local-only actors. A multiplayer resource validates each proposal on the server, creates the real MTA elements, and chooses exactly one client to run the native AI.
+San Andreas Online keeps GTA's unmanaged local population loops disabled. Instead, the [client-side population primitives](/neon/functions#population) ask GTA for pedestrian families, models, path placements, road vehicles, lanes, driving parameters, and suitable occupants without creating local-only actors. A multiplayer resource validates each proposal on the server, creates the real MTA elements, and chooses exactly one client to run the native AI.
 
 Two reference resources demonstrate that complete authority layer. [`native-ped-traffic`](https://github.com/Dryxio/mtasa-neon/tree/master/test-resources/native-ped-traffic) covers civilians, native gang groups, gang combat, motorcycle carjacks, dealers, safe city cops, and civilian couples. [`native-vehicle-traffic`](https://github.com/Dryxio/mtasa-neon/tree/master/test-resources/native-vehicle-traffic) covers civilian road cars, vans, trucks, motorcycles, BMX bicycles, and quads with native placement, drivers, optional passengers, `DriveWander`, owner handoff, stuck recovery, destruction, and cleanup.
 
@@ -33,7 +33,7 @@ The completed ambient slice remains focused on outdoor world-zero simulation. At
 
 ## Native ped tasks
 
-These are not animation helpers or a new Lua movement solver. Neon exposes the
+These are not animation helpers or a new Lua movement solver. San Andreas Online exposes the
 **original GTA:SA task system**. Lua gives an NPC an intent; GTA performs the
 movement, steering, animations, slowdown, and stopping.
 
@@ -76,7 +76,7 @@ Every mapped function page names the original `CTask`, opcode, command, source c
 <details>
 <summary>Show all native ped task and SCM mappings</summary>
 
-| Neon API | Original GTA C++ task or state | SCM opcode / command |
+| SA:O API | Original GTA C++ task or state | SCM opcode / command |
 | --- | --- | --- |
 | [`isPedNativeTaskReady`](/neon/functions/isPedNativeTaskReady) | Checks that GTA has recreated the ped intelligence required by script-command tasks; creates no `CTask` | No SCM opcode |
 | [`setPedGoTo`](/neon/functions/setPedGoTo) | `CTaskComplexGoToPointAndStandStill` or timed variant | `05D3 TASK_GO_STRAIGHT_TO_COORD` |
@@ -168,7 +168,7 @@ A lease can keep an existing native instance and task alive outside ordinary str
 
 The optional `native-task-runtime` resource demonstrates the missing server layer. It owns stable `drive_to` routes and can also group several peds, vehicles, and targets into one native-task cohort. One client runs the complete cohort; a handoff revokes the old epoch before another client rebuilds it. The runtime can combine drive routes, `escort_left`, drive-bys, recorded-car playback, ped proof policies, tyre policy, and vehicle autopilot tuning while restoring captured state during cleanup.
 
-Those runtime exports are resource code, not core Neon Lua registrations, so they are not part of the engine API catalog. The current route layer also has no frozen-client heartbeat reassignment and does not reconstruct combat groups.
+Those runtime exports are resource code, not core San Andreas Online Lua registrations, so they are not part of the engine API catalog. The current route layer also has no frozen-client heartbeat reassignment and does not reconstruct combat groups.
 
 ## Native gang tags
 
@@ -297,7 +297,7 @@ These three exports belong to the optional [`story-entry-exit-runtime`](https://
 
 ## Mission audio
 
-GTA exposes four physical mission-audio slots. Neon wraps them in generation-scoped resource handles:
+GTA exposes four physical mission-audio slots. San Andreas Online wraps them in generation-scoped resource handles:
 
 - a request reserves a supported event and starts loading;
 - polling can re-arm a pending native request that GTA silently dropped;
@@ -323,7 +323,7 @@ The calling resource must own the recording and playback slot. The vehicle must 
 
 [`setVehiclePlaybackSpeed`](/neon/functions/setVehiclePlaybackSpeed) changes that active recording from `0` to `16` times normal speed. This lets a mission slow a recorded car down, pause it, or make it catch up without replacing its route.
 
-Resource shutdown, vehicle destruction, stream-out, or sync ownership loss stops playback. Neon stops when the network frame is gone rather than guessing where playback should resume.
+Resource shutdown, vehicle destruction, stream-out, or sync ownership loss stops playback. San Andreas Online stops when the network frame is gone rather than guessing where playback should resume.
 
 ## Current limitations
 

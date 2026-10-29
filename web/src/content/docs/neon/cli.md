@@ -1,17 +1,17 @@
 ---
-title: Neon CLI for AI agents
-description: Give an AI coding agent the complete MTA and Neon API, project-aware context, automatic checks, and real in-game test evidence.
+title: SA:O CLI for AI agents
+description: Give an AI coding agent the complete MTA and SA:O API, project-aware context, automatic checks, and real in-game test evidence.
 sidebar:
   order: 5
 ---
 
-Point an AI coding agent at a gamemode, and the Neon CLI gives it the real MTA + Neon API instead of making it guess function names or learn the engine from scattered source files. The agent can find the right API, read its exact arguments and client/server side, edit the project, check common mistakes, refresh its context, and prove whether the server, client, and GTA actually joined a test.
+Point an AI coding agent at a gamemode, and the SA:O CLI gives it the real MTA + SA:O API instead of making it guess function names or learn the engine from scattered source files. The agent can find the right API, read its exact arguments and client/server side, edit the project, check common mistakes, refresh its context, and prove whether the server, client, and GTA actually joined a test.
 
 Everything runs locally and returns structured JSON that an agent can use directly. It does not need an account, a remote service, or an MCP server.
 
 ## Download the portable CLI
 
-[Download Neon CLI Portable v1.0.0](https://github.com/Dryxio/mtasa-neon/releases/download/neon-cli-v1.0.0/Neon-CLI-Portable.zip), extract it, and open the resulting `neon-cli` folder. The same ZIP works on Windows and macOS; it does not require an MTA build.
+[Download SA:O CLI Portable v1.0.0](https://github.com/Dryxio/mtasa-neon/releases/download/neon-cli-v1.0.0/Neon-CLI-Portable.zip), extract it, and open the resulting `neon-cli` folder. The same ZIP works on Windows and macOS; it does not require an MTA build.
 
 Check the extracted package before using it:
 
@@ -38,7 +38,7 @@ Python 3.10 or newer is required, but no third-party Python package is needed.
 | Task | Command | Concrete result |
 | --- | --- | --- |
 | Prepare a gamemode | `neon init` | Finds its resources and creates the instructions, API catalogue, and compact project context the agent needs. |
-| Find an API | `neon api search` | Searches MTA and Neon functions, events, classes, and enums by name or purpose. |
+| Find an API | `neon api search` | Searches MTA and San Andreas Online functions, events, classes, and enums by name or purpose. |
 | Read the exact contract | `neon api get` | Returns arguments, return values, client/server side, availability, and evidence for one API. |
 | Catch project mistakes | `neon check` | Checks resource metadata and detects known API or event calls used on the wrong side. |
 | Refresh agent context | `neon generate project` | Rebuilds the API index, project contracts, and separate client/server Lua language-server files. |
@@ -63,7 +63,7 @@ neon init --workspace /path/to/gamemode --profile neon-pair --json
 - `.neon-tooling`, which contains the gamemode's pinned copy of the complete API catalogue;
 - `.neon`, which contains compact agent context, an API index, project contracts, and client/server Lua language-server files.
 
-The command refuses to replace an existing `neon.project.json` or `.neon` directory. If `NEON_AGENT.md` already exists, it is preserved and the result tells you to merge the Neon instructions manually. If automatic discovery is not suitable, repeat `--resource path/to/resource` to name each resource explicitly.
+The command refuses to replace an existing `neon.project.json` or `.neon` directory. If `NEON_AGENT.md` already exists, it is preserved and the result tells you to merge the San Andreas Online instructions manually. If automatic discovery is not suitable, repeat `--resource path/to/resource` to name each resource explicitly.
 
 ## Use this loop while developing
 

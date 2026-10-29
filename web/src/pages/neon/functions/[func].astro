@@ -36,7 +36,7 @@ const relatedFunctions = relatedCandidates
 
 <StarlightPage frontmatter={{ template: 'doc', title: func.name, description: func.summary, tableOfContents: true }}>
   <div class="neon-function-banner">
-    <div><span>NEON {func.extension ? 'EXTENSION' : 'API'}</span><a href={`/neon/functions#${func.category}`}>{category.title}</a></div>
+    <div><span>SA:O {func.extension ? 'EXTENSION' : 'API'}</span><a href={`/neon/functions#${func.category}`}>{category.title}</a></div>
   </div>
 
   <p class="summary">{func.summary}</p>
@@ -124,7 +124,7 @@ const relatedFunctions = relatedCandidates
 
   <section class="continue-exploring" aria-labelledby="continue-title" data-pagefind-ignore>
     <div class="continue-heading">
-      <div><span>RELATED NEON APIS</span><h2 id="continue-title">Continue exploring</h2></div>
+      <div><span>RELATED SA:O APIS</span><h2 id="continue-title">Continue exploring</h2></div>
       <a href={category.guide}>Read the system guide →</a>
     </div>
     {relatedFunctions.length > 0 && <div class="related-grid">
@@ -141,7 +141,7 @@ const relatedFunctions = relatedCandidates
     </nav>
   </section>
 
-  <p class="back-link"><a href="/neon/functions">← Back to the Neon Lua API</a> · <a href={category.guide}>How {category.title} works →</a></p>
+  <p class="back-link"><a href="/neon/functions">← Back to the SA:O Lua API</a> · <a href={category.guide}>How {category.title} works →</a></p>
 </StarlightPage>
 
 <script>

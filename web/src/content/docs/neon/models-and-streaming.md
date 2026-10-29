@@ -29,7 +29,7 @@ In practice:
 - resource shutdown performs the same cleanup automatically;
 - native ped and player render entities are prepared before slot release to avoid stale `CBaseModelInfo` references.
 
-The [model API group](/neon/functions#models) contains allocation, freeing, metadata, naming, enumeration, capacity, and forward/reverse mapping functions. Commit [`ac3a54f57`](https://github.com/Dryxio/mtasa-neon/commit/ac3a54f57) moved the server range above Neon's complete FileID layout and made the standard client model consumers resolve logical IDs before touching GTA slots.
+The [model API group](/neon/functions#models) contains allocation, freeing, metadata, naming, enumeration, capacity, and forward/reverse mapping functions. Commit [`ac3a54f57`](https://github.com/Dryxio/mtasa-neon/commit/ac3a54f57) moved the server range above San Andreas Online's complete FileID layout and made the standard client model consumers resolve logical IDs before touching GTA slots.
 
 ## Using model IDs correctly
 

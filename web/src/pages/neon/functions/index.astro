@@ -30,11 +30,11 @@ const categoryPresentation: Record<string, { title: string; description: string 
   vehicleAudio: { title: 'Custom vehicle sounds', description: 'Load custom engine banks and trigger configured backfire sounds and flames.' },
   text: { title: 'Mission text and HUD messages', description: 'Show GTA mission text, help prompts, and large on-screen messages.' },
   recording: { title: 'Recorded vehicle routes', description: 'Load and play GTA vehicle recordings for scripted driving scenes.' },
-  identity: { title: 'Player identity and bans', description: 'Read verified Neon and Discord identities and use them in server bans.' },
-  compatibility: { title: 'Weapon glitch settings', description: 'Use the weapon-glitch options that Neon adds to existing MTA functions.' },
+  identity: { title: 'Player identity and bans', description: 'Read verified SA:O account and Discord identities and use them in server bans.' },
+  compatibility: { title: 'Weapon glitch settings', description: 'Use the weapon-glitch options that San Andreas Online adds to existing MTA functions.' },
   mapping: { title: 'SA-MP maps and object materials', description: 'Parse SA-MP map source and control object materials and streaming limits.' },
   radio: { title: 'GTA radio playback', description: 'Read and restore the current GTA radio station, track, queue, and playback position.' },
-  visuals: { title: 'Neon visual settings', description: 'Read, change, and reset client visual options exposed by Neon.' },
+  visuals: { title: 'San Andreas Online visual settings', description: 'Read, change, and reset client visual options exposed by San Andreas Online.' },
   browser: { title: 'Open web links', description: 'Open an allowed HTTPS page in the player’s external browser.' },
 };
 
@@ -68,21 +68,21 @@ const apiFamilies = familyDefinitions.map((family) => ({
 const documentedCategoryKeys = categoryEntries.filter(({ entries }) => entries.length > 0).map(({ key }) => key).sort();
 const assignedCategoryKeys = familyDefinitions.flatMap(({ categories }) => [...categories]).sort();
 if (JSON.stringify(documentedCategoryKeys) !== JSON.stringify(assignedCategoryKeys)) {
-  throw new Error('Every documented Neon API category must appear exactly once in the public family directory.');
+  throw new Error('Every documented SA:O API category must appear exactly once in the public family directory.');
 }
 
 const sideLabel = (side: string) => side === 'shared' ? 'client + server' : side;
 ---
 
-<StarlightPage frontmatter={{ template: 'doc', title: 'Neon Lua API', description: 'Every Lua function added or extended by MTA:SA Neon.', tableOfContents: false }}>
+<StarlightPage frontmatter={{ template: 'doc', title: 'SA:O Lua API', description: 'Every Lua function added or extended by San Andreas Online.', tableOfContents: false }}>
   <div class="neon-api-intro">
-    <span>COMPLETE NEON REFERENCE</span>
-    <h2>{neonFunctions.length} APIs added or extended by Neon</h2>
-    <p>Every public Lua function added or extended by Neon is listed below. Browse the six areas, filter by where an API runs, or enter part of a function name.</p>
+    <span>COMPLETE SA:O REFERENCE</span>
+    <h2>{neonFunctions.length} APIs added or extended by San Andreas Online</h2>
+    <p>Every public Lua function added or extended by San Andreas Online is listed below. Browse the six areas, filter by where an API runs, or enter part of a function name.</p>
   </div>
 
   <div class="api-explorer" data-api-explorer>
-    <section class="explorer-controls" aria-label="Filter Neon APIs" data-explorer-controls hidden>
+    <section class="explorer-controls" aria-label="Filter SA:O APIs" data-explorer-controls hidden>
       <div class="filter-name">
         <label for="api-name-filter">Filter by function name</label>
         <div><input id="api-name-filter" type="search" autocomplete="off" placeholder="setPedNavigateTo" aria-describedby="api-name-help" data-api-search /><button type="button" data-clear-search hidden>Clear</button></div>
@@ -107,8 +107,8 @@ const sideLabel = (side: string) => side === 'shared' ? 'client + server' : side
           <div>
             <label><span>API type</span><select data-kind-filter>
               <option value="all">New and extended APIs</option>
-              <option value="neon">New Neon functions</option>
-              <option value="extension">Existing functions extended by Neon</option>
+              <option value="neon">New San Andreas Online functions</option>
+              <option value="extension">Existing functions extended by San Andreas Online</option>
             </select></label>
             <label class="check-filter"><input type="checkbox" data-mapping-filter /> Has a GTA task mapping</label>
             <label class="check-filter"><input type="checkbox" data-opcode-filter /> Has an SCM opcode</label>
@@ -123,7 +123,7 @@ const sideLabel = (side: string) => side === 'shared' ? 'client + server' : side
     </section>
 
     <nav class="family-directory" aria-labelledby="families-title">
-      <div class="section-heading"><p>ALL NEON SYSTEMS</p><h2 id="families-title">Browse by area</h2></div>
+      <div class="section-heading"><p>ALL SA:O SYSTEMS</p><h2 id="families-title">Browse by area</h2></div>
       <div class="family-links">
         {apiFamilies.map((family) => {
           const count = family.categories.reduce((total, category) => total + category.entries.length, 0);
@@ -133,9 +133,9 @@ const sideLabel = (side: string) => side === 'shared' ? 'client + server' : side
     </nav>
 
     <div class="no-results" data-no-results hidden>
-      <strong>No Neon APIs match these filters.</strong>
+      <strong>No SA:O APIs match these filters.</strong>
       <span>Change the function name, system, or side to see more APIs.</span>
-      <button type="button" data-reset-filters>Show all Neon APIs</button>
+      <button type="button" data-reset-filters>Show all SA:O APIs</button>
     </div>
 
     {apiFamilies.map((family) => {

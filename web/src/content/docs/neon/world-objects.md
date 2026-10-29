@@ -7,7 +7,7 @@ sidebar:
 
 San Andreas is full of dynamic props that MTA has never exposed to scripts: cardboard boxes, crates, bins, street clutter, breakable furniture. They are created by GTA's own IPL/streaming path, simulated by GTA physics, and were invisible to Lua.
 
-Neon publishes them as read/write client elements of type **`worldobject`**. GTA keeps physics ownership. Lua observes the real object and can react to it.
+San Andreas Online publishes them as read/write client elements of type **`worldobject`**. GTA keeps physics ownership. Lua observes the real object and can react to it.
 
 <video controls muted loop playsinline preload="metadata"
        poster="/neon-media/world-objects-poster.jpg"
@@ -25,8 +25,8 @@ Nothing to place, spawn, or configure: every dynamic prop San Andreas already st
 
 One element per **persistent** GTA object, not per streamed instance.
 
-- Neon scans GTA's object pool every frame and adopts each entry that is a real world object: entity type object, an `OBJECT_GAME` type byte, and a linked persistent dummy.
-- Element identity is the dummy, so the **same Lua element survives stream-out and stream-in**. GTA recycles object-pool addresses, and Neon only reuses a cached proxy when the dummy identity still matches.
+- San Andreas Online scans GTA's object pool every frame and adopts each entry that is a real world object: entity type object, an `OBJECT_GAME` type byte, and a linked persistent dummy.
+- Element identity is the dummy, so the **same Lua element survives stream-out and stream-in**. GTA recycles object-pool addresses, and San Andreas Online only reuses a cached proxy when the dummy identity still matches.
 - Objects created by MTA (`createObject`) are excluded. `CObject::Init` writes `OBJECT_GAME`, while MTA's own objects overwrite the same byte with `OBJECT_MISSION2`. Temporary and flying components are excluded by the same test.
 - Every proxy is parented to the client root and is a **system entity**: `destroyElement` cannot remove it. GTA owns the lifetime.
 - Proxies exist only while the game is actually playing. Leaving the playing state clears them.
@@ -46,7 +46,7 @@ end
 
 The element carries its model internally, but `getElementModel` does not currently accept a `worldobject` and returns `false`. Read the model from the `model` argument of the damage and break events instead.
 
-When an object streams out, GTA's `ConvertToDummyObject` copies the final matrix back onto the persistent dummy. Neon then reads the dummy, so the element keeps reporting a truthful last-known transform instead of going stale or erroring.
+When an object streams out, GTA's `ConvertToDummyObject` copies the final matrix back onto the persistent dummy. San Andreas Online then reads the dummy, so the element keeps reporting a truthful last-known transform instead of going stale or erroring.
 
 Rotation uses the same ZXY decomposition as `CClientObject`, so a native object and an MTA object report orientation in one convention.
 
@@ -91,7 +91,7 @@ end)
 
 `onClientElementStreamIn` and `onClientElementStreamOut` also fire on the proxy when GTA creates or converts away the streamed object. They carry no extra arguments; the element is `source`.
 
-Damage and break events are raised even for an object Neon has not adopted yet during a pool scan. The handler adopts it on demand, so the first hit on a freshly created object is not lost.
+Damage and break events are raised even for an object San Andreas Online has not adopted yet during a pool scan. The handler adopts it on demand, so the first hit on a freshly created object is not lost.
 
 ## A minimal gameplay example
 

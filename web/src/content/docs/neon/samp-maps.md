@@ -1,9 +1,9 @@
 ---
 title: SA-MP maps
-description: Load Texture Studio / Pawn map exports directly in Neon, including custom SA-MP objects and material slots.
+description: Load Texture Studio / Pawn map exports directly in San Andreas Online, including custom SA-MP objects and material slots.
 ---
 
-Neon can load common **SA-MP Texture Studio / Pawn map exports without converting them to Lua first**. The client parser understands object creation, virtual worlds, interiors, building removals, and per-material texture/color overrides.
+San Andreas Online can load common **SA-MP Texture Studio / Pawn map exports without converting them to Lua first**. The client parser understands object creation, virtual worlds, interiors, building removals, and per-material texture/color overrides.
 
 <video controls muted loop playsinline preload="metadata"
        poster="/neon-media/samp-poster.jpg"
@@ -19,7 +19,7 @@ The clip opens on the `.pwn` source, and almost every line is a `SetDynamicObjec
 
 A parser that only replayed `CreateObject` would place every piece of geometry in the right position and still render a map that looks nothing like the original. Material slots are what makes the import faithful rather than merely geometrically correct, which is why they are handled alongside object creation instead of being left to the resource.
 
-Neon reads both the plain SA-MP form and the streamer plugin's dynamic form:
+San Andreas Online reads both the plain SA-MP form and the streamer plugin's dynamic form:
 
 | Recognised | Handled as |
 | --- | --- |
@@ -62,9 +62,9 @@ end
 
 ## SA-MP custom objects
 
-The reference loader resolves the official SA-MP 0.3.7 custom-object ranges to resource-owned Neon runtime models. The source map can keep its original SA-MP IDs; the loader maps them to the client slots actually allocated by Neon.
+The reference loader resolves the official SA-MP 0.3.7 custom-object ranges to resource-owned San Andreas Online runtime models. The source map can keep its original SA-MP IDs; the loader maps them to the client slots actually allocated by San Andreas Online.
 
-Material slots use [`setObjectMaterial`](/neon/functions/setObjectMaterial) and [`removeObjectMaterial`](/neon/functions/removeObjectMaterial). Neon applies the SA-MP slot index across every atomic in the DFF and keeps the override on the MTA object so it survives stream-out/recreation.
+Material slots use [`setObjectMaterial`](/neon/functions/setObjectMaterial) and [`removeObjectMaterial`](/neon/functions/removeObjectMaterial). San Andreas Online applies the SA-MP slot index across every atomic in the DFF and keeps the override on the MTA object so it survives stream-out/recreation.
 
 [`engineGetTXDIDFromName`](/neon/functions/engineGetTXDIDFromName) is available when a loader needs the current GTA slot for a named texture dictionary.
 

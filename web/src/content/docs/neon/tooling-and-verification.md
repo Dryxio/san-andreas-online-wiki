@@ -1,11 +1,11 @@
 ---
 title: Tooling and verification
-description: Neon's asset pipelines, validators, focused test resources, profiling, and verification standards.
+description: San Andreas Online's asset pipelines, validators, focused test resources, profiling, and verification standards.
 sidebar:
   order: 9
 ---
 
-Deep GTA changes need more than a successful build. Neon combines executable guards, static checks, focused harnesses, matching client/server builds, and in-game passes so the documentation can state exactly what was exercised and what remains open.
+Deep GTA changes need more than a successful build. San Andreas Online combines executable guards, static checks, focused harnesses, matching client/server builds, and in-game passes so the documentation can state exactly what was exercised and what remains open.
 
 ## Find Lua errors with DebugScript 4
 
@@ -17,7 +17,7 @@ Press `Ctrl+Shift+I` or use `devtools` to toggle the view; `Escape` closes it. T
 
 ## Develop a gamemode with an AI agent
 
-The [Neon CLI for AI agents](/neon/cli) gives a coding agent the complete MTA + Neon API, exact function contracts, project checks, generated context, and an optional path to verified in-game observations. Its dedicated guide covers setup and the full development loop.
+The [SA:O CLI for AI agents](/neon/cli) gives a coding agent the complete MTA + SA:O API, exact function contracts, project checks, generated context, and an optional path to verified in-game observations. Its dedicated guide covers setup and the full development loop.
 
 ## Evidence levels
 
@@ -34,7 +34,7 @@ The wiki uses these terms deliberately:
 
 A lower level never implies a higher one. A build does not prove gameplay, and the existence of a test resource does not prove that every API in the same category was exercised by it.
 
-## How Neon is verified
+## How San Andreas Online is verified
 
 The normal verification stack is:
 
@@ -102,8 +102,8 @@ An API page labels an explicitly assigned resource as **Test resource**. When it
 | Radar, water, pickups, and seabed | Focused lifecycle resources and in-game extended-world checks | A complete world package with all optional GTA subsystems |
 | Renderer and native pools | Focused stress resources exceeded historical ceilings; the 20,363-light startup catalogue and private 25,000-entry Project2DFX queue were checked in game | Every capacity under one production workload, broad distant-light performance, and the post-fix headlight/shader visual pass |
 | SkyGFX | Affected projects built; selected color/radiosity and later YCbCr paths were checked in game | Full SkyGFX or PS2 parity, every weather/resolution/mod combination, and a broad performance matrix |
-| Neon client and server browser | Startup, navigation, joining, localization, artwork, and cache paths received targeted implementation/runtime work | One exhaustive clean-install, DPI, aspect-ratio, offline, password, cache, and language matrix |
-| Neon Identity | Service tests and development OAuth/ticket/required-auth flows; two real server restarts verified automatic key creation and stable identity; `neon-identity-connect-test` checks the connection-event values, getter agreement, and pre-join cancellation | One checked-in MTA pass covering every getter and identity-aware ban path, key-rotation overlap, and a general owner portal |
+| San Andreas Online client and server browser | Startup, navigation, joining, localization, artwork, and cache paths received targeted implementation/runtime work | One exhaustive clean-install, DPI, aspect-ratio, offline, password, cache, and language matrix |
+| SA:O account | Service tests and development OAuth/ticket/required-auth flows; two real server restarts verified automatic key creation and stable identity; `neon-identity-connect-test` checks the connection-event values, getter agreement, and pre-join cancellation | One checked-in MTA pass covering every getter and identity-aware ban path, key-rotation overlap, and a general owner portal |
 | Custom vehicle audio | Client build plus manual AE86/Soundize-bank and BUST gameplay runs | A public reproducible config/bank resource and a focused automated or multiplayer playback matrix |
 | Custom model registry | Server/client registry harnesses plus spawn, replacement, free, and parent-fallback runtime checks | Universal behavior for arbitrary resource combinations and legacy fallback expectations |
 | Native world packs | Format-3 multi-IMG transport, exact selected-set audit, first admission in the same GTA process without a required restart, four-city generations 2–29, direct switching, bank reuse, reconnect, resource/server restart, non-contiguous selection, ten same-process server switches, a different four-pack to three-pack switch, and the forced restart fallback. The checked cache runs measured about 9 seconds in a fresh process and 1–4 seconds when reusing the same process. | Every possible custom pack or one-to-eight-pack combination, optional GTA subsystems, a true D3D device reset, and universal loading times across different hardware and packs |
@@ -121,13 +121,13 @@ An API page labels an explicitly assigned resource as **Test resource**. When it
 | Object fracture | A pass/fail harness covering fracture from live geometry, introspection, cache reuse, durability profiles including the zero-health transition, invalid arguments and multiple simultaneous effects | Fracture cost on high-triangle models, and how many simultaneous effects a production scene can sustain |
 | Story primitives | Focused task, lease, camera, cutscene, audio, text, recording, gang-tag, and route checks; reusable two-client channels cover locomotion, ordered animation, fight/chat, weapon audiovisuals, and selected physical responses | General task completion events, arbitrary syncer reconstruction, universal task presentation, and frozen-owner heartbeat recovery |
 | Mission checkpoints | Sweet & Kendl and OG Loc each completed two consecutive two-client headless passes; Tagging Up Turf has a complete two-client success path; Drive-Thru has two-client pursuit coverage plus a complete single-client return; Nines has partial runtime coverage | Complete natural visual/audio replay for the two newest missions, remaining branches, and the incomplete Drive-Thru and Nines multiplayer matrix; see [Mission checkpoints](/neon/mission-checkpoints) |
-| Compatibility and packaging | Capability-gated ordinary layouts, exact Neon native-world protocol rejection, installer/package checks, localhost connection, packaged Windows and Linux x64 server startup smoke tests, and Linux ARM64 package inspection | Linux ARM64 startup, runtime validation of `fastweaponstrafe`, and every experimental feature in the public package |
+| Compatibility and packaging | Capability-gated ordinary layouts, exact San Andreas Online native-world protocol rejection, installer/package checks, localhost connection, packaged Windows and Linux x64 server startup smoke tests, and Linux ARM64 package inspection | Linux ARM64 startup, runtime validation of `fastweaponstrafe`, and every experimental feature in the public package |
 
 This matrix is intentionally scoped. Exact timings, temporary ticket IDs, build-log excerpts, and one-off debugging observations belong in commits or test records rather than the evergreen guide.
 
 ## Local asset previews
 
-Neon includes developer-only drop workflows:
+San Andreas Online includes developer-only drop workflows:
 
 - one DFF and optional TXD can preview a replacement of the local player's current base skin;
 - one IFP loads an animation list; a single animation starts immediately, while several animations open searchable controls for looping, freeze-last-frame, root motion, speed, and blend.
@@ -136,6 +136,6 @@ Inputs are size-bounded and use existing validation and replacement paths, but t
 
 ## Reading API provenance
 
-Each Neon API page keeps its implementation source and introducing or extending commit. Where known, it also links a direct test resource. These links provide traceability; they do not replace the evidence scope stated in the guide or matrix.
+Each SA:O API page keeps its implementation source and introducing or extending commit. Where known, it also links a direct test resource. These links provide traceability; they do not replace the evidence scope stated in the guide or matrix.
 
 For playable story coverage, use [Mission checkpoints](/neon/mission-checkpoints). For native-world security, lifecycle, and current boundaries, use [Native world packs](/neon/native-world).

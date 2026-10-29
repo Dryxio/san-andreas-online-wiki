@@ -3,7 +3,7 @@ title: Native GTA radio playback
 description: Read, restore, and synchronize GTA:SA's real radio playback state from client Lua.
 ---
 
-Neon exposes the state of **GTA:SA's native radio manager**, not a replacement sound player. A client resource can capture the current station and track, restore it later, or relay the snapshot to another client when a game mode wants synchronized radio playback.
+San Andreas Online exposes the state of **GTA:SA's native radio manager**, not a replacement sound player. A client resource can capture the current station and track, restore it later, or relay the snapshot to another client when a game mode wants synchronized radio playback.
 
 ## Save and restore
 
@@ -22,7 +22,7 @@ end
 
 ## Synchronizing between clients
 
-The API is client-local. Neon does not automatically broadcast radio state.
+The API is client-local. San Andreas Online does not automatically broadcast radio state.
 
 A multiplayer resource can relay a snapshot through normal server events and apply it on another client:
 

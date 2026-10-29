@@ -7,7 +7,7 @@ sidebar:
 
 San Andreas has ropes: the Vegas and quarry cranes, the dock crane, the wrecking ball, the helicopter winch magnet, the SWAT rappel line. They are a real solver in the engine, and nothing in MTA could reach them.
 
-Neon exposes them as synchronized **`rope` elements**, and lets a resource keep more logical ropes alive than GTA has slots for.
+San Andreas Online exposes them as synchronized **`rope` elements**, and lets a resource keep more logical ropes alive than GTA has slots for.
 
 <!-- MEDIA PLACEHOLDER: Managed rope showcase. Suggested file: /neon-media/rope-showcase.mp4 with /neon-media/rope-poster.jpg. The runway sequence separates wrecking ball, mini magnet and harness into three labelled demonstrations. -->
 
@@ -30,7 +30,7 @@ Neon exposes them as synchronized **`rope` elements**, and lets a resource keep 
 
 This is the one rule that will crash your server if you ignore it.
 
-GTA's `CRope::Update` **dereferences the rope holder** during its force pass, so every native type except `swat` requires a valid physical holder element. Neon now refuses a rope that would hit that path, and the harness carries a dedicated missing-holder regression test.
+GTA's `CRope::Update` **dereferences the rope holder** during its force pass, so every native type except `swat` requires a valid physical holder element. San Andreas Online now refuses a rope that would hit that path, and the harness carries a dedicated missing-holder regression test.
 
 `swat` is the only type that anchors to the world on its own.
 
@@ -69,9 +69,9 @@ Two more are client-only, because they read the live solver: [`getRopePositionAt
 
 ## More ropes than GTA has slots
 
-GTA has **eight** native rope slots. Neon does not stop you at eight.
+GTA has **eight** native rope slots. San Andreas Online does not stop you at eight.
 
-A resource creates as many logical `rope` elements as it wants, and Neon **leases the eight native slots** to the ropes that need them. The harness proves this directly: twelve logical ropes running with no more than eight native leases at any moment.
+A resource creates as many logical `rope` elements as it wants, and San Andreas Online **leases the eight native slots** to the ropes that need them. The harness proves this directly: twelve logical ropes running with no more than eight native leases at any moment.
 
 `isRopeActive` is how a client asks whether a given rope currently holds one of those leases.
 

@@ -7,7 +7,7 @@ sidebar:
 
 MTA collision has always come from a `.col` file: author it in an external tool, ship it in the resource, load it with `engineLoadCOL`. Collision shapes were fixed at packaging time.
 
-Neon lets a resource **describe collision as a Lua table** and have Neon serialize a real GTA collision model from it. The same table can be pushed again to rebuild the collision of a model that is already streamed into the world.
+San Andreas Online lets a resource **describe collision as a Lua table** and have San Andreas Online serialize a real GTA collision model from it. The same table can be pushed again to rebuild the collision of a model that is already streamed into the world.
 
 <video controls muted loop playsinline preload="metadata"
        poster="/neon-media/runtime-collision-poster.jpg"
@@ -57,7 +57,7 @@ local collision = {
 - `material` is optional and defaults to `0`. Valid values are integers `0` through `178`, GTA's surface materials, which drive footstep sounds, particles, and vehicle handling response.
 - `boxes[i].size` is the **full extent** centred on `position`. A `size` of `{4, 0.4, 2.5}` is a four-metre-wide, 40cm-thick, 2.5m-tall slab. Every component must be greater than zero.
 - Sphere `radius` must be greater than zero.
-- Mesh `indices` are zero-based within that mesh. Neon offsets them automatically when several meshes are combined into one model, so each mesh's indices stay local to its own vertex list.
+- Mesh `indices` are zero-based within that mesh. San Andreas Online offsets them automatically when several meshes are combined into one model, so each mesh's indices stay local to its own vertex list.
 
 Validation errors are raised as Lua errors naming the exact path, for example `spheres[2].radius must be finite` or `meshes[1].vertices must contain xyz triplets`, so a malformed table tells you which entry to fix.
 

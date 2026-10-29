@@ -25,11 +25,11 @@ Runtime evidence exceeded the old ceilings with 1,033 visible entities and 4,677
 
 ## Coronas and Project2DFX
 
-Neon renders the distant world itself, with no ASI install. Both options are off on a clean install and toggled from the settings tab.
+San Andreas Online renders the distant world itself, with no ASI install. Both options are off on a clean install and toggled from the settings tab.
 
-![Night view over the city: fogged out beyond a short distance in MTA:SA, full skyline with hundreds of distant lights in Neon](/neon-media/compare-project2dfx.jpg)
+![Night view over the city: fogged out beyond a short distance in MTA:SA, full skyline with hundreds of distant lights in San Andreas Online](/neon-media/compare-project2dfx.jpg)
 
-![Rooftop view over Los Santos: distant buildings are flat low-detail blobs in MTA:SA and resolve into detailed geometry in Neon](/neon-media/compare-draw-distance.jpg)
+![Rooftop view over Los Santos: distant buildings are flat low-detail blobs in MTA:SA and resolve into detailed geometry in San Andreas Online](/neon-media/compare-draw-distance.jpg)
 
 Commit [`4b7a1f523`](https://github.com/Dryxio/mtasa-neon/commit/4b7a1f523) relocates GTA's 64-entry corona array to 4,096 process-lifetime entries and patches the verified initialization, rendering, reflection, registration, and coordinate-update references. The first native slots remain available to GTA; up to 4,094 scripted coronas were validated in game.
 
@@ -45,11 +45,11 @@ What works today:
 - rebuild and telemetry APIs;
 - lifecycle cleanup.
 
-The in-game Neon settings tab exposes independent player controls for extended draw distance and Project2DFX. Both are off on a clean install. Draw distance is adjustable from 300 to 5,000 units; distant-light corona radius from 10% to 100%. Resource or server overrides take priority, and clearing them restores the saved player choice instead of leaving a temporary runtime value behind. Fog distance remains independent.
+The in-game San Andreas Online settings tab exposes independent player controls for extended draw distance and Project2DFX. Both are off on a clean install. Draw distance is adjustable from 300 to 5,000 units; distant-light corona radius from 10% to 100%. Resource or server overrides take priority, and clearing them restores the saved player choice instead of leaving a temporary runtime value behind. Fog distance remains independent.
 
 Remaining Project2DFX parity work includes matched corona size/intensity calibration, searchlight cones, the separate distant traffic-light and local point-light modules, optional static LOD shadows, extended vehicle or pedestrian shadows, and category-specific adaptive update and distance policies. These are tracked gaps, not implemented features.
 
-Neon's current maximum uses one fixed 5,000-unit override for the far clip and eligible stock-model LOD distances. That is materially more aggressive than Project2DFX's adaptive, category-specific defaults. An adaptive target-frame-rate mode, separate distances for vegetation and other categories, and amortized updates remain future work; fog distance stays independent.
+San Andreas Online's current maximum uses one fixed 5,000-unit override for the far clip and eligible stock-model LOD distances. That is materially more aggressive than Project2DFX's adaptive, category-specific defaults. An adaptive target-frame-rate mode, separate distances for vegetation and other categories, and amortized updates remain future work; fog distance stays independent.
 
 The full startup catalogue and private queue were compiled and checked in game during a city flight without a new crash or perceptible slowdown. That is a focused runtime check, not a broad performance guarantee; dense production scenes still need their own measurements.
 
@@ -61,7 +61,7 @@ The final marker relocation commit [`87e237bc0`](https://github.com/Dryxio/mtasa
 
 ## Native CULL zones
 
-Neon adopts vanilla attribute, tunnel, and mirror zones into stable IDs and expands their native stores:
+San Andreas Online adopts vanilla attribute, tunnel, and mirror zones into stable IDs and expands their native stores:
 
 - attribute: 1,300 → 4,096;
 - tunnel: 40 → 256;
@@ -82,6 +82,6 @@ The relocation and CRUD lifecycle have been exercised in game. Dedicated tunnel 
 
 ## Dense-entity profiling
 
-Neon adds aggregate timing scopes, the local `timingdebug [on|off]` command, repeatable entity mixes, and profiles that separate MTA traversal, GTA native entity time, and collision cost. Compare profiles only when the model mix, collision, draw distance, and unrelated stress resources stay the same.
+San Andreas Online adds aggregate timing scopes, the local `timingdebug [on|off]` command, repeatable entity mixes, and profiles that separate MTA traversal, GTA native entity time, and collision cost. Compare profiles only when the model mix, collision, draw distance, and unrelated stress resources stay the same.
 
-One narrow shader compatibility correction moves GTA's vehicle specular light away from an overwritten Direct3D slot and keeps it in Neon's existing `LIGHT*` scan. The original problem was reproduced and the affected projects compile, but native-material and custom-shader behavior still needs a post-fix visual pass; see commit [`c85423a08`](https://github.com/Dryxio/mtasa-neon/commit/c85423a08).
+One narrow shader compatibility correction moves GTA's vehicle specular light away from an overwritten Direct3D slot and keeps it in San Andreas Online's existing `LIGHT*` scan. The original problem was reproduced and the affected projects compile, but native-material and custom-shader behavior still needs a post-fix visual pass; see commit [`c85423a08`](https://github.com/Dryxio/mtasa-neon/commit/c85423a08).

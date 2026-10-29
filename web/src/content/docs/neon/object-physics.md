@@ -7,7 +7,7 @@ sidebar:
 
 An MTA object normally sits where you put it. GTA has a full rigid-body simulation for its own physical objects, but `createObject` never used it.
 
-Neon lets a server **opt an object into that native physics**. It falls, collides, rebounds, rolls down slopes and keeps spinning, and the resulting motion is synchronized rather than being flattened by object sync.
+San Andreas Online lets a server **opt an object into that native physics**. It falls, collides, rebounds, rolls down slopes and keeps spinning, and the resulting motion is synchronized rather than being flattened by object sync.
 
 <video controls muted loop playsinline preload="metadata"
        poster="/neon-media/object-physics-poster.jpg"

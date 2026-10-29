@@ -5,7 +5,7 @@ sidebar:
   order: 2
 ---
 
-Neon lets a server fill one shared world with **NPCs and civilian road traffic driven by GTA:SA's original AI**. Pedestrians walk, react, fight, flee, and form groups using GTA's own behavior. Cars choose GTA's roads and lanes, drive themselves, and carry suitable drivers and passengers.
+San Andreas Online lets a server fill one shared world with **NPCs and civilian road traffic driven by GTA:SA's original AI**. Pedestrians walk, react, fight, flee, and form groups using GTA's own behavior. Cars choose GTA's roads and lanes, drive themselves, and carry suitable drivers and passengers.
 
 The server owns the real NPCs and vehicles. One eligible player simulates each native AI task, while everyone else receives the synchronized result instead of running a competing copy.
 
@@ -15,7 +15,7 @@ The shared ambient runtime covers **civilians, native gang groups, gang combat, 
 
 ## One shared population, not one crowd per client
 
-Neon does not turn GTA's local `CPopulation::AddToPopulation` loop back on. Each client would otherwise create a different crowd.
+San Andreas Online does not turn GTA's local `CPopulation::AddToPopulation` loop back on. Each client would otherwise create a different crowd.
 
 Instead, the reference population runtime follows one authority path:
 
@@ -31,11 +31,11 @@ The server remains authoritative for element lifetime, health, seats, damage adm
 
 ## Civilian road traffic
 
-Neon can create shared traffic that drives itself on GTA's original road network. GTA chooses a vehicle that fits the current area, a valid road and lane near the player, its direction, normal driving speed and style, and suitable skins for its driver and passengers.
+San Andreas Online can create shared traffic that drives itself on GTA's original road network. GTA chooses a vehicle that fits the current area, a valid road and lane near the player, its direction, normal driving speed and style, and suitable skins for its driver and passengers.
 
 The server then creates one real vehicle with all of its occupants. One player runs GTA's `DriveWander` behavior, so the car follows roads, changes direction at road junctions, reacts to the world, and keeps driving without a Lua resource scripting every steering adjustment. Other players see that same vehicle and its occupants through normal synchronization.
 
-When a new traffic car starts driving, Neon compares nearby roads with the car's actual position, forward direction, and height. It chooses the road that best matches the vehicle, keeps one-way lane directions legal, and avoids attaching a correctly aligned car to a nearby crossing or road on another level. This reduces immediate U-turns, wrong-way starts, and bad junction choices.
+When a new traffic car starts driving, San Andreas Online compares nearby roads with the car's actual position, forward direction, and height. It chooses the road that best matches the vehicle, keeps one-way lane directions legal, and avoids attaching a correctly aligned car to a nearby crossing or road on another level. This reduces immediate U-turns, wrong-way starts, and bad junction choices.
 
 The complete car and its occupants remain invisible during their short setup. GTA first settles the suspension on the road surface, confirms ground contact, installs `DriveWander`, and applies the road-aligned starting speed. Only then does the server reveal the unit. A candidate that cannot settle safely is recycled instead of appearing frozen or embedded in a slope.
 
@@ -96,11 +96,11 @@ Dealer population uses GTA's dealer quota, race/weather model choice, dealer ped
 
 ### City cops
 
-Ambient cops are the one family where Neon deliberately does **not** run the retail task.
+Ambient cops are the one family where San Andreas Online deliberately does **not** run the retail task.
 
 MTA peds are physically `CPlayerPed` instances. GTA's `CTaskComplexWanderCop` reads `CCopPed`-only storage in its first/next/control paths and can enter the wanted, alarm, criminal-scan, pursuit, and arrest systems. Running it on an MTA ped is unsafe, and a server-owned ambient cop that can start a real pursuit is not the intended behavior anyway.
 
-Neon instead reuses GTA's verified base `CTaskComplexWander` locomotion vtable slots, identifies the task as `WANDER_TYPE_COP`, and supplies a deliberately empty scanner. Path nodes, walking, pauses, road crossing, and blocked-node avoidance are preserved, while wanted level, alarms, criminal scans, pursuit, and arrest are unreachable by construction rather than by a runtime check.
+San Andreas Online instead reuses GTA's verified base `CTaskComplexWander` locomotion vtable slots, identifies the task as `WANDER_TYPE_COP`, and supplies a deliberately empty scanner. Path nodes, walking, pauses, road crossing, and blocked-node avoidance are preserved, while wanted level, alarms, criminal scans, pursuit, and arrest are unreachable by construction rather than by a runtime check.
 
 A resource opts into that behavior through the new `ambient-cop-safe` event profile:
 

@@ -3,9 +3,9 @@ title: Custom vehicle audio
 description: Give chosen cars high-quality engine sounds that react to driving, plus backfire sounds and exhaust flames.
 ---
 
-Give a chosen car its own high-quality engine sound. Neon makes it rise and fall with the engine RPM, throttle and gear changes. It can also play backfire pops and shoot matching flames from the exhaust.
+Give a chosen car its own high-quality engine sound. San Andreas Online makes it rise and fall with the engine RPM, throttle and gear changes. It can also play backfire pops and shoot matching flames from the exhaust.
 
-Already have an Assetto Corsa or Soundize `.bank`? The audio work is already done. Copy the bank into your resource, add a small text file, assign it to a GTA vehicle, and activate that vehicle. Neon then follows its RPM, throttle and gears automatically—there is no FMOD project, bank conversion, or per-frame audio script to write for an existing compatible bank.
+Already have an Assetto Corsa or Soundize `.bank`? The audio work is already done. Copy the bank into your resource, add a small text file, assign it to a GTA vehicle, and activate that vehicle. San Andreas Online then follows its RPM, throttle and gears automatically—there is no FMOD project, bank conversion, or per-frame audio script to write for an existing compatible bank.
 
 Other players hear the custom engines of configured cars around them too. A resource can also relay a scripted backfire to nearby clients, so everyone hears the pop and sees the exhaust burst at the same moment.
 
@@ -14,10 +14,10 @@ Other players hear the custom engines of configured cars around them too. A reso
        style="display:block;width:100%;max-width:45rem;height:auto;margin-inline:auto;border-radius:.5rem;">
   <source src="/neon-media/vehicle-audio-showcase.mp4" type="video/mp4" />
   Your browser cannot play this clip. It shows a car using a custom engine sound
-  while Neon fires visible backflames from both exhausts.
+  while San Andreas Online fires visible backflames from both exhausts.
 </video>
 
-**Turn the sound on.** This BUST race uses a resource-provided HD engine bank. The resource supplies the sounds and chooses the car; Neon handles the live engine mix, automatic backfires and exhaust flames. The backfire is part of Neon, not a video-only server effect, and Lua can also trigger it on demand with [`enginePlayVehicleAudioBackfire`](/neon/functions/enginePlayVehicleAudioBackfire).
+**Turn the sound on.** This BUST race uses a resource-provided HD engine bank. The resource supplies the sounds and chooses the car; San Andreas Online handles the live engine mix, automatic backfires and exhaust flames. The backfire is part of San Andreas Online, not a video-only server effect, and Lua can also trigger it on demand with [`enginePlayVehicleAudioBackfire`](/neon/functions/enginePlayVehicleAudioBackfire).
 
 This is useful beyond racing: custom cars, mission vehicles, convoys, roleplay fleets, cinematics, and scripted events can all share the same audio layer. GTA audio returns automatically when the system stops.
 
@@ -44,7 +44,7 @@ vehicle-audio/
         └── ae86.ini
 ```
 
-Copy the vehicle `.bank` from the Assetto Corsa or Soundize pack into `audio/banks/`. Copy the shared `base` banks once; every vehicle in the resource reuses them. Keep the pack's `GUIDs.txt` nearby if it has one—it is useful for checking event names, but Neon does not need to download it.
+Copy the vehicle `.bank` from the Assetto Corsa or Soundize pack into `audio/banks/`. Copy the shared `base` banks once; every vehicle in the resource reuses them. Keep the pack's `GUIDs.txt` nearby if it has one—it is useful for checking event names, but San Andreas Online does not need to download it.
 
 Only distribute sounds that you have permission to use.
 
@@ -123,7 +123,7 @@ addEventHandler("onResourceStart", resourceRoot, function()
 end)
 ```
 
-Start the resource and drive the car. Neon now reads the real vehicle state and controls the engine sound, throttle, gear changes, backfire pops, and configured flames. Other players who receive the resource hear the custom engine too.
+Start the resource and drive the car. San Andreas Online now reads the real vehicle state and controls the engine sound, throttle, gear changes, backfire pops, and configured flames. Other players who receive the resource hear the custom engine too.
 
 To add another car, repeat only the vehicle `.bank`, matching `.ini`, one line in `vehicles.conf`, and the two relevant `<file>` entries. The base banks and Lua loading code stay the same.
 
@@ -143,7 +143,7 @@ Unknown or absent values leave the vehicle on the ordinary path. The separate `n
 
 One resource owns the vehicle-audio system on each client. That resource can call [`engineReloadVehicleAudioConfig`](/neon/functions/engineReloadVehicleAudioConfig) while tuning local files, or [`engineUnloadVehicleAudioConfig`](/neon/functions/engineUnloadVehicleAudioConfig) when it no longer needs the system. Restart the resource after changing files that clients must download.
 
-A successful load means the configuration was accepted. The banks open when Neon first needs them, so test the vehicle in game to catch a missing file or incorrect event path.
+A successful load means the configuration was accepted. The banks open when San Andreas Online first needs them, so test the vehicle in game to catch a missing file or incorrect event path.
 
 ## Script and share a backfire
 

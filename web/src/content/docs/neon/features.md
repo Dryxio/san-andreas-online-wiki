@@ -1,13 +1,13 @@
 ---
-title: What's different in Neon
-description: A practical overview of the engine limits, systems, APIs, and tools added by Neon.
+title: What's different in San Andreas Online
+description: A practical overview of the engine limits, systems, APIs, and tools added by San Andreas Online.
 sidebar:
   order: 1
 ---
 
-This page covers **only what MTA:SA Neon changes**. For standard MTA behavior, use the [official MTA Wiki](https://wiki.multitheftauto.com/wiki/Main_Page).
+This page covers **only what San Andreas Online changes**. For standard MTA behavior, use the [official MTA Wiki](https://wiki.multitheftauto.com/wiki/Main_Page).
 
-Neon is still experimental. Its capacity patches keep the normal San Andreas defaults unless a server or resource opts into the larger limits.
+San Andreas Online is still experimental. Its capacity patches keep the normal San Andreas defaults unless a server or resource opts into the larger limits.
 
 ## Start with what you want to build
 
@@ -26,22 +26,22 @@ Neon is still experimental. Its capacity patches keep the normal San Andreas def
 | Load SA-MP / Texture Studio maps | [SA-MP maps](/neon/samp-maps) | Parse Pawn exports directly, resolve SA-MP custom objects, apply material slots, building removals, interiors/worlds, and redistribute the fixed object-streaming budget when needed. |
 | Give the game a PS2-style image or DE radar | [SkyGFX, radar, and client visuals](/neon/skygfx) | Selected SkyGFX effects, a Definitive Edition radar profile, layout controls, and resource-owned temporary visual overrides. |
 | Read or synchronize GTA radio playback | [Native GTA radio playback](/neon/native-radio) | Capture and restore the real GTA radio station/track/position/queue state; multiplayer synchronization remains resource-owned. |
-| Discover and join Neon servers | [Neon client experience](/neon/client-experience) | A GTA-style menu combines the public registry with live server data, filters, favorites, artwork, localization, and connection states. |
-| Add verified community identity | [Neon Identity](/neon/identity) | One server setting enables optional or required Neon/Discord identity; verified IDs are available before join and in resource bans. |
-| Give custom vehicles their own sound | [Custom vehicle audio](/neon/vehicle-audio) | Copy an existing Assetto Corsa or Soundize `.bank` into a resource, assign it to a vehicle, and Neon makes it follow RPM, throttle and gears automatically. It can also add automatic or Lua-triggered backfire sounds and exhaust flames. |
+| Discover and join SA:O servers | [San Andreas Online client experience](/neon/client-experience) | A GTA-style menu combines the public registry with live server data, filters, favorites, artwork, localization, and connection states. |
+| Add verified community identity | [SA:O accounts](/neon/identity) | One server setting enables optional or required San Andreas Online/Discord identity; verified IDs are available before join and in resource bans. |
+| Give custom vehicles their own sound | [Custom vehicle audio](/neon/vehicle-audio) | Copy an existing Assetto Corsa or Soundize `.bank` into a resource, assign it to a vehicle, and San Andreas Online makes it follow RPM, throttle and gears automatically. It can also add automatic or Lua-triggered backfire sounds and exhaust flames. |
 | Use more of the world | [Extended world](/neon/extended-world) | A 20 km XY domain with matching sectors, water, radar, map, pickup, and network work. |
 | Load custom maps through GTA | [Native world packs](/neon/native-world) | Give the server a supported static-world pack and GTA loads and streams it as native world content. Format-3 packs can download and load on the first connection without restarting GTA; a set can contain up to eight packs and later be replaced safely at runtime. |
 | Give resources stable custom model IDs | [Custom models](/neon/models-and-streaming) | Server identities map to local GTA slots with native-parent fallback and cleanup. |
 | Build GTA-style scenes or missions | [Story runtime](/neon/story-runtime) | Native pedestrian pathfinding, driving and combat AI, camera and cutscene leases, mission audio and text, recordings, and actor policies. |
 | See what the mission harnesses prove | [Mission checkpoints](/neon/mission-checkpoints) | Five GTA mission recreations, including complete two-client headless passes for Sweet & Kendl and OG Loc, with exact evidence and remaining visual checks. |
-| Call a specific function | [Neon Lua API](/neon/functions) | Searchable reference with side, lifecycle, source, commit, native mapping, and test evidence. |
-| Build a gamemode with an AI coding agent | [Neon CLI for AI agents](/neon/cli) | Give the agent the complete MTA + Neon API, exact function contracts, project checks, generated context, and real server/client/GTA observations without an MCP server. |
+| Call a specific function | [SA:O Lua API](/neon/functions) | Searchable reference with side, lifecycle, source, commit, native mapping, and test evidence. |
+| Build a gamemode with an AI coding agent | [SA:O CLI for AI agents](/neon/cli) | Give the agent the complete MTA + SA:O API, exact function contracts, project checks, generated context, and real server/client/GTA observations without an MCP server. |
 
 ## World and streaming
 
-![Rooftop view over Los Santos: distant buildings are flat low-detail blobs in MTA:SA and resolve into detailed geometry in Neon](/neon-media/compare-draw-distance.jpg)
+![Rooftop view over Los Santos: distant buildings are flat low-detail blobs in MTA:SA and resolve into detailed geometry in San Andreas Online](/neon-media/compare-draw-distance.jpg)
 
-| Area | Standard MTA:SA | Neon |
+| Area | Standard MTA:SA | San Andreas Online |
 | --- | ---: | ---: |
 | Main world-sector grid | 120 × 120 | 400 × 400 |
 | LOD world-sector grid | 30 × 30 | 100 × 100 |
@@ -49,8 +49,8 @@ Neon is still experimental. Its capacity patches keep the normal San Andreas def
 | Custom-water grid | 12 × 12 / 144 blocks | 40 × 40 / 1,600 blocks |
 | Custom-water XY | About −3,000 to +3,000 | −10,000 to +9,999 |
 | Pickup visual XY | −4,096 to +4,095.875 | −10,000 to +9,999 |
-| Low-precision network XY | About −8,192 to +8,192 | −10,000 to +10,000 on Neon-capable connections |
-| Absolute network camera range | About −8,192 to +8,192 | About −16,384 to +16,384 on Neon-capable connections |
+| Low-precision network XY | About −8,192 to +8,192 | −10,000 to +10,000 on SA:O-capable connections |
+| Absolute network camera range | About −8,192 to +8,192 | About −16,384 to +16,384 on SA:O-capable connections |
 | Procedural seabed | Unlimited | Server-configurable 3,000–10,000 or unlimited |
 | Native minimap | Fixed 12 × 12 stock grid | Sparse 40 × 40 logical grid plus Vanilla/Definitive client radar profiles |
 | F11 map | Packaged San Andreas image | Runtime atlas composed from native and registered extended tiles |
@@ -62,9 +62,9 @@ Neon is still experimental. Its capacity patches keep the normal San Andreas def
 
 ## Rendering and native pools
 
-![Night view over the city: fogged out beyond a short distance in MTA:SA, full skyline with hundreds of distant lights in Neon](/neon-media/compare-project2dfx.jpg)
+![Night view over the city: fogged out beyond a short distance in MTA:SA, full skyline with hundreds of distant lights in San Andreas Online](/neon-media/compare-project2dfx.jpg)
 
-| Area | Standard MTA:SA | Neon |
+| Area | Standard MTA:SA | San Andreas Online |
 | --- | ---: | ---: |
 | GTA corona pool | 64 | 4,096; 4,094 available to scripted coronas |
 | GTA 3D marker pool | 32 | 4,096 |
@@ -78,7 +78,7 @@ Neon is still experimental. Its capacity patches keep the normal San Andreas def
 | Streaming RenderWare instances | 2,500 | 30,000 |
 | PS2-style post effects | Not built in | Integrated SkyGFX color filter, YCbCr and depth-bias first-run profile; blur and radiosity remain opt-in |
 | Radar renderer | Stock GTA radar | Configurable Vanilla or Definitive Edition profile with widescreen-safe layout controls |
-| Resource visual overrides | No Neon layer | Allowlisted radar/SkyGFX settings stack by resource and restore player preferences on stop |
+| Resource visual overrides | No San Andreas Online layer | Allowlisted radar/SkyGFX settings stack by resource and restore player preferences on stop |
 | Native CULL editing | Internal only | Resource-owned Lua CRUD, stable IDs, and cleanup |
 | Project2DFX distant lights | Not integrated | Opt-in static coronas and timed traffic lights from the complete startup IPL catalogue, using a private 25,000-light render queue |
 
@@ -86,11 +86,11 @@ Neon is still experimental. Its capacity patches keep the normal San Andreas def
 
 ![A cardboard box bound to a worldobject element, tracked with a live label next to a green objective zone](/neon-media/world-objects-poster.jpg)
 
-| Area | Standard MTA:SA | Neon |
+| Area | Standard MTA:SA | San Andreas Online |
 | --- | --- | --- |
 | Custom model identity | Client-local runtime allocation | Server-stable logical IDs mapped to per-client GTA slots |
 | Supported server model types | Not available | Objects, vehicles, and peds with native-parent fallback |
-| SA-MP custom-object identity | Not integrated | Original SA-MP IDs resolved to resource-owned Neon runtime models by the reference loader |
+| SA-MP custom-object identity | Not integrated | Original SA-MP IDs resolved to resource-owned San Andreas Online runtime models by the reference loader |
 | Model-native ped locomotion | No synchronized explicit mode | Shared Lua policy that follows skin changes and recreation |
 | Ambient pedestrian population | Local GTA population remains disabled | Server-owned civilians, native gang groups, dealers, city cops, and civilian couples proposed from GTA's population and path rules with owner epochs and cleanup |
 | Ambient gang behavior | Local-only single-player logic | Owner-only native groups with leader/follower movement, fight/flee decisions, gang weapons, synchronized damage admission, and bike-jack handoff |
@@ -127,15 +127,15 @@ The tables describe available code paths, not one shared stability level. Follow
 ## Tools and tests
 
 - `debugscript 4` opens a searchable client/server Lua error inspector with filters, grouped duplicates, capture, and TXT/JSON export.
-- The [Neon CLI for AI agents](/neon/cli) gives coding agents the complete MTA + Neon API, checks resource metadata and API sides, generates deterministic project context, and can verify that the server, client, and GTA actually joined a test.
+- The [SA:O CLI for AI agents](/neon/cli) gives coding agents the complete MTA + SA:O API, checks resource metadata and API sides, generates deterministic project context, and can verify that the server, client, and GTA actually joined a test.
 - Drag-and-drop DFF/TXD skin and IFP animation previews for local development.
 - Extended-world generators, IMG packers, radar extractors, manifest validators, cache tests, and native payload audits.
 - A native SA-MP map parser/loader fixture, object-streaming quota harness, native-radio playback resource, and a world-object scripting showcase.
 - Focused test resources for engine limits, world systems, native tasks, synchronized population, scene primitives, mission checkpoints, compatibility, and cleanup.
-- A CI-built Windows Neon installer with its own branding, registry state, protocol registration, shortcuts, and uninstall path, isolated from an existing official MTA installation.
+- A CI-built Windows San Andreas Online installer with its own branding, registry state, protocol registration, shortcuts, and uninstall path, isolated from an existing official MTA installation.
 
 See [Tooling and verification](/neon/tooling-and-verification) for the broader test-level definitions. A successful build or static check is not described as an in-game pass.
 
 ## API inventory
 
-The [Neon Lua API](/neon/functions) is generated from the final C++ registrations and documents both Neon additions and existing MTA functions whose side, task, or lifecycle contract Neon extends. Each entry identifies its actual side, implementation commit, ownership rules, failure conditions, and focused test resource when one exists.
+The [SA:O Lua API](/neon/functions) is generated from the final C++ registrations and documents both San Andreas Online additions and existing MTA functions whose side, task, or lifecycle contract San Andreas Online extends. Each entry identifies its actual side, implementation commit, ownership rules, failure conditions, and focused test resource when one exists.

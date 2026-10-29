@@ -7,7 +7,7 @@ sidebar:
 
 Every lamp post, neon sign and steam vent in San Andreas carries **2DFX**: small effect records baked into the model by RenderWare. They are what makes a streetlight glow and a manhole steam. MTA never exposed them.
 
-Neon does, with 13 client functions that read, edit, add and remove those records.
+San Andreas Online does, with 13 client functions that read, edit, add and remove those records.
 
 <video controls muted loop playsinline preload="metadata"
        poster="/neon-media/2dfx-poster.jpg"

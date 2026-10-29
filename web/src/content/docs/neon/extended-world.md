@@ -11,13 +11,13 @@ Build locations far beyond the normal San Andreas area using coordinates from **
 
 ## Sector relocation
 
-The active GTA grids grow from 120 × 120 to 400 × 400 for the main world and from 30 × 30 to 100 × 100 for LODs. Neon patches GTA 1.0 US initialization, lookup, rendering, and scanning code rather than presenting a larger Lua-only coordinate range. The implementation is tracked by commit [`842983c91`](https://github.com/Dryxio/mtasa-neon/commit/842983c91).
+The active GTA grids grow from 120 × 120 to 400 × 400 for the main world and from 30 × 30 to 100 × 100 for LODs. San Andreas Online patches GTA 1.0 US initialization, lookup, rendering, and scanning code rather than presenting a larger Lua-only coordinate range. The implementation is tracked by commit [`842983c91`](https://github.com/Dryxio/mtasa-neon/commit/842983c91).
 
 What that means:
 
 - San Andreas stays at its original coordinates.
 - `createBuilding`, world linking, LOS, rendering, and LOD scans use the active relocated grid.
-- Network coordinate encodings advertise a capability before using Neon ranges.
+- Network coordinate encodings advertise a capability before using San Andreas Online ranges.
 - Legacy connections retain MTA's original packet formats.
 - The Perry Island pipeline provides a deterministic generated test around X=9,000.
 
@@ -28,17 +28,17 @@ The server writes extended coordinates in each recipient's negotiated format. Th
 - `moveObject` interpolation, including its optional rotation and easing tail;
 - collision-polygon point updates.
 
-Both packets now keep semantic position data until `Write`, where the server chooses the correct encoding for each recipient. Legacy clients keep their old bytes; Neon-capable clients receive the extended position form. Targeted tests cover ordinary coordinates, X=+9,500, water-side X=−9,990, mixed recipient versions, and exact final object positions. See commit [`c223b6b3d`](https://github.com/Dryxio/mtasa-neon/commit/c223b6b3d).
+Both packets now keep semantic position data until `Write`, where the server chooses the correct encoding for each recipient. Legacy clients keep their old bytes; SA:O-capable clients receive the extended position form. Targeted tests cover ordinary coordinates, X=+9,500, water-side X=−9,990, mixed recipient versions, and exact final object positions. See commit [`c223b6b3d`](https://github.com/Dryxio/mtasa-neon/commit/c223b6b3d).
 
 ## Water and seabed
 
-Commit [`52039a4df`](https://github.com/Dryxio/mtasa-neon/commit/52039a4df) relocates GTA's custom-water block index to 40 × 40. Custom polygons can cover the full Neon domain while the native infinite outside-world ocean remains independent.
+Commit [`52039a4df`](https://github.com/Dryxio/mtasa-neon/commit/52039a4df) relocates GTA's custom-water block index to 40 × 40. Custom polygons can cover the full San Andreas Online domain while the native infinite outside-world ocean remains independent.
 
 The server APIs [`setWorldSeaBedOuterBoundary`](/neon/functions/setWorldSeaBedOuterBoundary), [`resetWorldSeaBedOuterBoundary`](/neon/functions/resetWorldSeaBedOuterBoundary), and [`getWorldSeaBedOuterBoundary`](/neon/functions/getWorldSeaBedOuterBoundary) control only the rendered procedural seabed. They do not remove ocean water or change buoyancy and water physics.
 
 ## Pickups at extended coordinates
 
-GTA stores pickup positions in signed 16-bit eighth-unit fields. Neon keeps MTA's floating-point position separately, saturates the native placeholder safely, and relocates the associated object before linking it into the world. This prevents visual wrapping at X=4,096 without changing the native pickup ABI or ordinary in-range behavior.
+GTA stores pickup positions in signed 16-bit eighth-unit fields. San Andreas Online keeps MTA's floating-point position separately, saturates the native placeholder safely, and relocates the associated object before linking it into the world. This prevents visual wrapping at X=4,096 without changing the native pickup ABI or ordinary in-range behavior.
 
 ## Extended radar and F11 map
 
@@ -79,15 +79,15 @@ This is separate from [native world packs](/neon/native-world). Native packs reg
 
 ## Test maps are not bundled worlds
 
-Perry Island, Liberty City, Vice City, Carcer City, and Bullworth are test cases for Neon's generic systems. Generated game assets stay out of Git and must be built locally from lawfully obtained source material. Neon does not include or redistribute those cities.
+Perry Island, Liberty City, Vice City, Carcer City, and Bullworth are test cases for San Andreas Online's generic systems. Generated game assets stay out of Git and must be built locally from lawfully obtained source material. San Andreas Online does not include or redistribute those cities.
 
 ## Current boundaries
 
 - Extended coordinates do not automatically provide radar, paths, population, zones, audio, interiors, or environment data.
 - Project2DFX searchlights, distant cars, and static shadows are not implemented.
-- Native World v3 accepts one to eight compatible custom static-world packs after they pass the closed format and content audits. It can admit a different server or selected set in the same GTA process after a safe drain; if that clean state cannot be proved, Neon uses a verified restart fallback.
+- Native World v3 accepts one to eight compatible custom static-world packs after they pass the closed format and content audits. It can admit a different server or selected set in the same GTA process after a safe drain; if that clean state cannot be proved, San Andreas Online uses a verified restart fallback.
 - Ordinary draw distances remain unchanged unless a server or resource changes them.
 
 ## Implementation note
 
-The early native `SWEET1A` gate caught a generated-manifest collision with GTA's shared animation timing constant. Commit [`4f2be00c1`](https://github.com/Dryxio/mtasa-neon/commit/4f2be00c1) removes that non-sector operand while leaving Neon's dedicated sector value in place.
+The early native `SWEET1A` gate caught a generated-manifest collision with GTA's shared animation timing constant. Commit [`4f2be00c1`](https://github.com/Dryxio/mtasa-neon/commit/4f2be00c1) removes that non-sector operand while leaving San Andreas Online's dedicated sector value in place.

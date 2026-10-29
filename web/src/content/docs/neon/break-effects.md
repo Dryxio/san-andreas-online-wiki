@@ -7,7 +7,7 @@ sidebar:
 
 GTA has breakable objects, but only the ones Rockstar prepared: the model needs the DFF breakable plugin, and MTA's `breakObject` only works on that fixed set.
 
-Neon fractures **any** streamed object. Fragments are generated from the object's live RenderWare geometry at runtime, so no custom DFF, TXD, shader or fracture metadata is involved, and the pieces keep the source UV and material data.
+San Andreas Online fractures **any** streamed object. Fragments are generated from the object's live RenderWare geometry at runtime, so no custom DFF, TXD, shader or fracture metadata is involved, and the pieces keep the source UV and material data.
 
 <video controls muted loop playsinline preload="metadata"
        poster="/neon-media/break-poster.jpg"
@@ -35,7 +35,7 @@ local effect = createObjectBreakEffect(theObject, {
 })
 ```
 
-**Or arm the object and let normal damage do it.** [`setObjectBreakProfile`](/neon/functions/setObjectBreakProfile) gives an object durability, and Neon consumes GTA's native per-impact object damage until it runs out:
+**Or arm the object and let normal damage do it.** [`setObjectBreakProfile`](/neon/functions/setObjectBreakProfile) gives an object durability, and San Andreas Online consumes GTA's native per-impact object damage until it runs out:
 
 ```lua
 setObjectBreakProfile(theObject, {
@@ -61,7 +61,7 @@ min(1, 2 * (radius - distance) / radius) * 300
 
 with the weak rocket variant scaling that by `0.2`. An explosion outside the radius does nothing, and one strong enough drives health to zero and fractures the object like any other hit.
 
-This works **even on models whose vanilla object data would make them explosion-proof**, since the durability is Neon's rather than GTA's.
+This works **even on models whose vanilla object data would make them explosion-proof**, since the durability is San Andreas Online's rather than GTA's.
 
 ## Options
 
@@ -92,7 +92,7 @@ The sleeping count is the useful one for performance: fragments stop costing sim
 
 ## The geometry cache
 
-Cutting a mesh into fragments is the expensive part, so Neon caches the result per model. Breaking the second crate of the same model reuses the first one's computed geometry, which `getBreakEffectCacheHit` reports.
+Cutting a mesh into fragments is the expensive part, so San Andreas Online caches the result per model. Breaking the second crate of the same model reuses the first one's computed geometry, which `getBreakEffectCacheHit` reports.
 
 [`getBreakEffectCacheSize`](/neon/functions/getBreakEffectCacheSize) reports how many entries are held and [`clearBreakEffectCache`](/neon/functions/clearBreakEffectCache) drops them, which is worth doing after a scene that fractured many different models.
 

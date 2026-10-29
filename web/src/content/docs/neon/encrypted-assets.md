@@ -1,11 +1,11 @@
 ---
 title: Encrypted resource assets
-description: Encrypt downloadable DFF, TXD, and COL files, then let Neon authenticate and apply them without exposing plaintext or keys to client Lua.
+description: Encrypt downloadable DFF, TXD, and COL files, then let San Andreas Online authenticate and apply them without exposing plaintext or keys to client Lua.
 sidebar:
   order: 5
 ---
 
-Drop DFF, TXD, and COL files into the [Neon Asset Encrypter](/neon/tools/asset-encrypter), enter the exact resource name, then download the generated ZIP. Neon clients receive authenticated ciphertext in their resource cache instead of reusable model files. Choosing which native or custom model to replace remains a runtime Lua decision.
+Drop DFF, TXD, and COL files into the [San Andreas Online Asset Encrypter](/neon/tools/asset-encrypter), enter the exact resource name, then download the generated ZIP. San Andreas Online clients receive authenticated ciphertext in their resource cache instead of reusable model files. Choosing which native or custom model to replace remains a runtime Lua decision.
 
 The encrypter runs entirely in the browser. Files and keys are not uploaded to the wiki or Vercel.
 
@@ -41,7 +41,7 @@ Merge the generated entries inside the existing `<meta>` element:
 <script src="neon-assets-client.lua" type="client" />
 ```
 
-Keep `neon-assets.key` in the server resource directory, but **never** declare it as a `<file>`, `<script>`, or other downloadable item. Neon rejects a package whose key file is client-visible.
+Keep `neon-assets.key` in the server resource directory, but **never** declare it as a `<file>`, `<script>`, or other downloadable item. San Andreas Online rejects a package whose key file is client-visible.
 
 Use one generated key and package ID for all protected files in the same package. Generate a new package when rotating the key.
 
@@ -71,7 +71,7 @@ Version 1 supports DFF, TXD, and COL files up to 64 MiB each. Clothing-model tar
 
 This prevents trivial extraction of usable models from the downloaded resource cache. It cannot make a client-rendered asset impossible to capture: a determined user can inspect plaintext or key material while the game is actively using it. This is the practical limit of client-side protection, including systems such as pcrypt.
 
-Encrypted packages require matching Neon client and server builds on the network epoch that introduced the asset transport. They do not load on an ordinary MTA client.
+Encrypted packages require matching San Andreas Online client and server builds on the network epoch that introduced the asset transport. They do not load on an ordinary MTA client.
 
 ## Implementation and evidence
 

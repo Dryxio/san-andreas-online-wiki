@@ -7,7 +7,7 @@ sidebar:
 
 Standard MTA fire is fire and forget: `createFire` lights a native GTA fire on one client and returns a boolean. There is no handle, nothing to change afterwards, and nothing the server knows about.
 
-Neon adds **managed fire**: a real `fire` element with a persistent identity, created from the server or the client, synchronized to every player, and mutable while it burns.
+San Andreas Online adds **managed fire**: a real `fire` element with a persistent identity, created from the server or the client, synchronized to every player, and mutable while it burns.
 
 <video controls muted loop playsinline preload="metadata"
        poster="/neon-media/fire-poster.jpg"
